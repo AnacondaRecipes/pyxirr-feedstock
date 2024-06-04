@@ -38,7 +38,6 @@ about:
   summary: Rust-powered collection of financial functions for Python.
   license: Unlicense
   license_file: LICENSE
-  license_family: Unlicense
   description: |
     Rust-powered collection of financial functions. PyXIRR stands for "Python XIRR" (for historical reasons), 
     but contains many other financial functions such as IRR, FV, NPV, etc.
