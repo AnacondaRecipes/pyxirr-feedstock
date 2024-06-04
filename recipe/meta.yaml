@@ -1,0 +1,50 @@
+{% set name = "pyxirr" %}
+{% set version = "0.10.3" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/pyxirr-{{ version }}.tar.gz
+  sha256: 8065865c327afef271dd5cd8561af22f407ccfde352b15860fe5aa0daee0af5d
+
+build:
+  number: 0
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  skip: True #  [py37 or py>312]
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - {{ compiler('rust') }}
+  host:
+    - python
+    - maturin >=1,<2
+    - pip
+  run:
+    - python
+
+test:
+  imports:
+    - pyxirr
+  commands:
+    - pip check
+  requires:
+    - pip
+
+about:
+  home: https://github.com/Anexen/pyxirr
+  summary: Rust-powered collection of financial functions for Python.
+  license: Unlicense
+  license_file: LICENSE
+  license_family: Unlicense
+  description: |
+    Rust-powered collection of financial functions. PyXIRR stands for "Python XIRR" (for historical reasons), 
+    but contains many other financial functions such as IRR, FV, NPV, etc.
+  doc_url: https://anexen.github.io/pyxirr/
+  dev_url: https://github.com/Anexen/pyxirr
+
+extra:
+  recipe-maintainers:
+    - psteyer
